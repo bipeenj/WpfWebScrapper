@@ -31,7 +31,12 @@
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding URL}"></TextBox>
         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="20">Result:</Label>
         <ListView ItemsSource="{Binding Result}" Grid.Row="2" Grid.Column="1" >
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Keyword" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Count"  DisplayMemberBinding="{Binding Count}" />
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>
