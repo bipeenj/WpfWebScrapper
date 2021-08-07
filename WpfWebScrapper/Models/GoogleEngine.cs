@@ -14,7 +14,7 @@ namespace WpfWebScrapper.Models
         public List<KeyValuePair<string, int>> Search(string urlIn)
         {
             List<KeyValuePair<string, int>> returnValue= new List<KeyValuePair<string, int>>();
-
+            returnValue.Add(new KeyValuePair<string, int>("Test",10));
             return returnValue;
         }
     }

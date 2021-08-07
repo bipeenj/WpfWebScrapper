@@ -3,23 +3,50 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using WpfWebScrapper.Models;
+using System.Windows.Input;
+using System;
+using System.Collections.Generic;
 
 namespace WpfWebScrapper.ViewModels
 {
+    public class ButtonCommand : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var vm = parameter as WebSearchVM;
+            vm.MyEgine.Keywords = vm.KeyWords.Split(";").ToList();
+            vm.Result.Clear();
+            vm.MyEgine.Search(vm.URL).ForEach(pair => {
+
+                vm.Result.Add(new KeywordVM { 
+                     Name = pair.Key,
+                     Count = pair.Value
+                });
+            });
+        }
+    }
     public class WebSearchVM: INotifyPropertyChanged
     {
         private ObservableCollection<KeywordVM> m_Result;
         private string m_Strings;
-        ISearchEngine MyEgine { get; set; }
+        public ISearchEngine MyEgine { get; set; }
         public WebSearchVM(ISearchEngine engineIn)
         {
             MyEgine = engineIn;
             Result = new ObservableCollection<KeywordVM>();
             KeyWords = "conveyancing software";
             URL = "www.smokeball.com.au";
-            
-            
-            
+
+            ButtonCommand = new ButtonCommand();
+
+
         }
         public string KeyWords 
         {
@@ -60,6 +87,6 @@ namespace WpfWebScrapper.ViewModels
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+        public ICommand ButtonCommand { get; set; }
     }
 }
