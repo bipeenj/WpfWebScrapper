@@ -21,15 +21,21 @@ namespace WpfWebScrapper.ViewModels
         public void Execute(object parameter)
         {
             var vm = parameter as WebSearchVM;
-            vm.MyEgine.Keywords = vm.KeyWords.Split(";").ToList();
-            vm.Result.Clear();
-            vm.MyEgine.Search(vm.URL).ForEach(pair => {
+            if (vm != null)
+            {
+                vm.MyEgine.Keywords = vm.KeyWords.Split(";").ToList();
+                vm.Result.Clear();
+                vm.MyEgine.SearchEngineUrl = "https://www.google.com/search?";
+                vm.MyEgine.Search(vm.URL).ForEach(pair =>
+                {
 
-                vm.Result.Add(new KeywordVM { 
-                     Name = pair.Key,
-                     Count = pair.Value
+                    vm.Result.Add(new KeywordVM
+                    {
+                        Name = pair.Key,
+                        Count = pair.Value
+                    });
                 });
-            });
+            }
         }
     }
     public class WebSearchVM: INotifyPropertyChanged
