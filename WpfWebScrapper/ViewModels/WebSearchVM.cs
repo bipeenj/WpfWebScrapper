@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Collections.ObjectModel;
+using WpfWebScrapper.Models;
 
 namespace WpfWebScrapper.ViewModels
 {
@@ -14,8 +10,10 @@ namespace WpfWebScrapper.ViewModels
     {
         private ObservableCollection<KeywordVM> m_Result;
         private string m_Strings;
-        public WebSearchVM()
+        ISearchEngine MyEgine { get; set; }
+        public WebSearchVM(ISearchEngine engineIn)
         {
+            MyEgine = engineIn;
             Result = new ObservableCollection<KeywordVM>();
             KeyWords = "conveyancing software";
             URL = "www.smokeball.com.au";

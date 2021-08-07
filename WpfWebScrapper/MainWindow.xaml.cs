@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfWebScrapper.Models;
 using WpfWebScrapper.ViewModels;
 namespace WpfWebScrapper
 {
@@ -22,8 +24,12 @@ namespace WpfWebScrapper
     {
         public MainWindow()
         {
-            DataContext = new WebSearchVM();
-            InitializeComponent();
+            using (var scope = App.Container.BeginLifetimeScope())
+            {
+                var iengine = scope.Resolve<ISearchEngine>();
+                DataContext = new WebSearchVM(iengine);
+                InitializeComponent();
+            }
         }
     }
 }
