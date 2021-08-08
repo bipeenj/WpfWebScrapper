@@ -3,9 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WpfWebScrapper"
         mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignLightForeground}"
+        Foreground="{DynamicResource MaterialDesignLightForeground}"
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Icon="Icon\MainIcon.ico"
         Title="Web-Quest" Height="450" Width="800" Margin="0,0,20,20">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*">
@@ -40,6 +47,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Width="100" MaxHeight="20" Command="{Binding ButtonCommand}" CommandParameter="{Binding}" Content="Search..."></Button>
+        <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Width="100" MaxHeight="30" Command="{Binding ButtonCommand}" CommandParameter="{Binding}" Content="Search..."></Button>
     </Grid>
 </Window>
