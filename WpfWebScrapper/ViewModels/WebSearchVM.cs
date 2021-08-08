@@ -28,7 +28,7 @@ namespace WpfWebScrapper.ViewModels
             var vm = parameter as WebSearchVM;
             if (vm != null)
             {
-                vm.MyEgine.Keywords = vm.KeyWords.Split(";").ToList();
+                vm.MyEgine.Keywords = vm.KeyWords.Split(";").Where(i=> i.Any()).ToList();
                 vm.Result.Clear();
                 vm.MyEgine.SearchEngineUrl = "https://www.google.com/search?";
                 vm.MyEgine.PageCount = 100;
