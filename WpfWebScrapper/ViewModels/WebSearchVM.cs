@@ -26,6 +26,7 @@ namespace WpfWebScrapper.ViewModels
                 vm.MyEgine.Keywords = vm.KeyWords.Split(";").ToList();
                 vm.Result.Clear();
                 vm.MyEgine.SearchEngineUrl = "https://www.google.com/search?";
+                vm.MyEgine.PageCount = 100;
                 vm.MyEgine.Search(vm.URL).ForEach(pair =>
                 {
 
@@ -63,11 +64,12 @@ namespace WpfWebScrapper.ViewModels
                 OnPropertyChanged("KeyWords");
                 Result.Clear();
                 m_Strings.Split(";").ToList().ForEach(word => {
-                    if (word.Any())
+                    var toadd = word.Trim();
+                    if (toadd.Any())
                     {
                         Result.Add(new KeywordVM
                         {
-                            Name = word,
+                            Name = toadd,
                             Count = 0
                         });
                     }
