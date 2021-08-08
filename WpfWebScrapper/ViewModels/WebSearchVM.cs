@@ -15,7 +15,12 @@ namespace WpfWebScrapper.ViewModels
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if(CanExecuteChanged!=null)
+            {
+
+            }
+                return true;
+            
         }
 
         public void Execute(object parameter)

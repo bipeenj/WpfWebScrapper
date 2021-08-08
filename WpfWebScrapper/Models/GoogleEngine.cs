@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfWebScrapper.Models
 {
-    class GoogleEngine : ISearchEngine
+    public class GoogleEngine : ISearchEngine
     {
         public string SearchEngineUrl { get ; set ; }
         public int PageCount { get; set; }
@@ -41,7 +41,7 @@ namespace WpfWebScrapper.Models
 
             return SearchWithinText(html, matchingurl);
         }
-        private IEnumerable<int> SearchWithinText(string textContent, string expressionTosearch)
+        public IEnumerable<int> SearchWithinText(string textContent, string expressionTosearch)
         {
             var regex = new Regex(@"href=\""(.*?)\""");
 
